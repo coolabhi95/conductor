@@ -1,0 +1,19 @@
+{
+  "name": "integrationDEMO",
+  "description": "demo to update workflow v2",
+  "version": 2,
+  "tasks": [
+    {
+      "name": "simple_workflow",
+      "taskReferenceName": "simple_task_ref",
+      "type": "SIMPLE"
+    }
+  ],
+  "inputParameters": [],
+  "schemaVersion": 2,
+  "restartable": true,
+  "workflowStatusListenerEnabled": false,
+  "ownerEmail": "abhishek.nitb0@gmail.com",
+  "timeoutPolicy": "ALERT_ONLY",
+  "timeoutSeconds": 0
+}
