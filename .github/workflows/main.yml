@@ -45,11 +45,11 @@ jobs:
       - name: update workflow v2
         uses: fjogeleit/http-request-action@v1.9.1
         with: # Set the secret as an input
-        # Request URLss
-        url: 'https://play.orkes.io/api/metadata/workflow'
-        customHeaders: '{"X-Authorization": "${{ fromJson(steps.authenticate.outputs.response).token }}"}'
-        # Request Method
-        method: 'PUT' # optional, default is POSTss
+           # Request URLss
+           url: 'https://play.orkes.io/api/metadata/workflow'
+           customHeaders: '{"X-Authorization": "${{ fromJson(steps.authenticate.outputs.response).token }}"}'
+          # Request Method
+           method: 'PUT' # optional, default is POSTss
         # Content Type
-        contentType: 'application/json'
-        file: "workflowDemoV2.json"
+           contentType: 'application/json'
+           file: "workflowDemoV2.json"
