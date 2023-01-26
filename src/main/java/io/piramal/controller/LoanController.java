@@ -53,9 +53,11 @@ public class LoanController {
         return ResponseEntity.ok("workflow created");
     }
 
+
     @PostMapping("/update")
     public ResponseEntity<String> updateWorkflow() throws IOException {
         workFlowService.UpdateWorkFlow();
+        log.info("workflow update");
         return ResponseEntity.ok("workflow updated");
     }
 

@@ -1,0 +1,44 @@
+name: CI
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  # Allows you to run this workflow maually from the Actions tab
+  workflow_dispatch:
+  # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: authenticate
+        id: authenticate
+        uses: fjogeleit/http-request-action@v1.9.1
+        with:
+          # Request URL
+          url: 'https://play.orkes.io/api/token'
+          # Request Method
+          method: 'POST' # optional, default is POST
+          # Content Type
+          contentType: 'application/json' # optional
+          data: '{"keyId": "${{ secrets.DEMO_KEY }}", "keySecret": "${{ secrets.DEMO_SECRET }}"}'
+      - name: create workflow v1
+        uses: fjogeleit/http-request-action@v1.9.1
+        with: # Set the secret as an input
+          # Request URLss
+          url: 'https://play.orkes.io/api/metadata/workflow'
+          customHeaders: '{"X-Authorization": "${{ fromJson(steps.authenticate.outputs.response).token }}"}'
+          # Request Method
+          method: 'POST' # optional, default is POSTss
+          # Content Type
+          contentType: 'application/json'
+          file: "workflowDemo.json"
+
+
