@@ -29,18 +29,6 @@ jobs:
           # Content Type
           contentType: 'application/json' # optional
           data: '{"keyId": "${{ secrets.DEMO_KEY }}", "keySecret": "${{ secrets.DEMO_SECRET }}"}'
-      - name: create workflow v1
-        uses: fjogeleit/http-request-action@v1.9.1
-        with: # Set the secret as an input
-          # Request URLss
-          url: 'https://play.orkes.io/api/metadata/workflow'
-          customHeaders: '{"X-Authorization": "${{ fromJson(steps.authenticate.outputs.response).token }}"}'
-          # Request Method
-          method: 'POST' # optional, default is POSTss
-          # Content Type
-          contentType: 'application/json'
-          file: "workflowDemo.json"
-
 
       - name: update workflow v2
         uses: fjogeleit/http-request-action@v1.9.1
