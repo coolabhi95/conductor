@@ -1,7 +1,7 @@
 {
   "name": "TESTDEMO",
-  "description": "demo to update workflow v2",
-  "version": 1,
+  "description": "demo to update workflow test v1",
+  "version": 2,
   "tasks": [
     {
       "name": "simple_workflow",
