@@ -1,4 +1,4 @@
-{
+[{
   "name": "TESTDEMO",
   "description": "demo to update workflow test v1",
   "version": 1,
@@ -16,4 +16,4 @@
   "ownerEmail": "abhishek.nitb0@gmail.com",
   "timeoutPolicy": "ALERT_ONLY",
   "timeoutSeconds": 0
-}
+}]
