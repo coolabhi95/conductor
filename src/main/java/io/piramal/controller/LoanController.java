@@ -1,5 +1,6 @@
 package io.piramal.controller;
 
+import io.piramal.model.CreateLoanRequest;
 import io.piramal.model.LoanInformation;
 import io.piramal.model.db.LoanDetails;
 import io.piramal.service.LoanCreationService;
@@ -12,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.Path;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +44,7 @@ public class LoanController {
 
     @GetMapping("/loan/{loanAccountNumber}")
     public ResponseEntity<LoanDetails> fetchLoanDetails(
-            @PathVariable(value = "key")  final String loanAccountNumber ) {
+            @PathVariable(value = "loanAccountNumber")  final String loanAccountNumber ) {
         log.info("Fetching loan details {}", loanAccountNumber);
         LoanDetails loanDetails = loanCreationService.getLoanDetails(loanAccountNumber);
         return ResponseEntity.ok(loanDetails);
@@ -54,12 +57,29 @@ public class LoanController {
     }
 
 
+    @PostMapping("/start/name/{name}")
+    public ResponseEntity<String> startWorkflow(@RequestBody CreateLoanRequest loanRequest, @PathVariable String name) throws IOException {
+        Map<String ,Object> input = new HashMap<>();
+        input.put("productId",loanRequest.getProductId());
+        input.put("customer_id",loanRequest.getCustomerId());
+        input.put("loanAmount",loanRequest.getLoanAmount());
+        input.put("interestrate",loanRequest.getInterestRate());
+        input.put("loanType",loanRequest.getLoanType());
+        input.put("branchId",loanRequest.getBranchId());
+        input.put("loanTenure",loanRequest.getLoanTenure());
+
+        workFlowService.StartWorkFloe(name,input);
+        log.info("workflow update");
+        return ResponseEntity.ok("workflow updated");
+    }
+
     @PostMapping("/update")
     public ResponseEntity<String> updateWorkflow() throws IOException {
         workFlowService.UpdateWorkFlow();
         log.info("workflow update");
         return ResponseEntity.ok("workflow updated");
     }
+
 
     @GetMapping
     public ResponseEntity<String> fetchLoanDetailsss() {

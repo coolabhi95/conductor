@@ -2,16 +2,12 @@ package io.piramal.client;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.piramal.config.AppConfig;
-import io.piramal.model.StartWortkFlowRequest;
+import io.piramal.model.StartLoanWortkFlowRequest;
 //import org.springframework.cloud.openfeign.FeignClient;
 //import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @FeignClient(
@@ -22,10 +18,10 @@ public interface OrkesClient {
 
 
     @PostMapping("/workflow")
-    void startWorkFlow(@RequestHeader Map<String, Object> header,@RequestBody StartWortkFlowRequest workFLowRequest);
+    void startWorkFlow(@RequestHeader Map<String, Object> header,@RequestBody StartLoanWortkFlowRequest workFLowRequest);
 
     @PostMapping
-    void CreateWorkFLow(@RequestHeader Map<String, Object> header,@RequestBody StartWortkFlowRequest workFLowRequest);
+    void CreateWorkFLow(@RequestHeader Map<String, Object> header,@RequestBody StartLoanWortkFlowRequest workFLowRequest);
 
 
 

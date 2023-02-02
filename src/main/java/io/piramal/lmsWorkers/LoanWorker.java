@@ -31,6 +31,7 @@ public class LoanWorker implements Worker {
         final ObjectMapper mapper = new ObjectMapper(); // jackson's objectmapper
         final LoanInformation loanInformation = mapper.convertValue(map, LoanInformation.class);
 
+
         result.setStatus(TaskResult.Status.COMPLETED);
         return result;
     }

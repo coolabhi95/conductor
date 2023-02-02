@@ -7,6 +7,8 @@ import io.piramal.service.LoanCreationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @Service
 public class LoanCreationServiceImpl implements LoanCreationService {
 
@@ -17,8 +19,13 @@ public class LoanCreationServiceImpl implements LoanCreationService {
     @Override
     public LoanDetails createLoanDetails(LoanInformation loanInformation) {
         LoanDetails loanDetails = new LoanDetails();
-        loanDetails.setLoanAccountNumber(loanInformation.getCustomerId()+loanInformation.getBranchId()+loanInformation.getLeadId());
-       loanDetailRepository.save(loanDetails);
+        loanDetails.setLoanAccountNumber(loanInformation.getCustomerId()+loanInformation.getBranchId()+new Random().nextInt(10000));
+        loanDetails.setBranchId(loanInformation.getBranchId());
+        loanDetails.setLoanTenure(loanDetails.getLoanTenure());
+        loanDetails.setCustomerId(loanInformation.getCustomerId());
+        loanDetails.setLoanType(loanInformation.getLoanType());
+        loanDetails.setInterestRate(loanInformation.getInterestRate());
+        loanDetailRepository.save(loanDetails);
         return loanDetails;
     }
 
