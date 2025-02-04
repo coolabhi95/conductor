@@ -32,6 +32,7 @@ import java.util.Properties;
 @Configuration
 @Slf4j
 public class AppConfig {
+    //test
 
     @Bean
     public Docket api() {
